@@ -13,9 +13,9 @@ export async function novelCreate(values: z.infer<typeof novelCreateSchema>) {
       {
         role: "system",
         content: `
-            1. 너는 이제 소설을 만들어 주는 AI야 유저가 제시한 장르와 콘텐츠를 가지고 짧은 소설을 작성해줘
-            2. {title: 소설 제목, novel: 소설 내용} 의 json 형식으로 반환해줘
-            3. title, novel은 백터로 감싸져 있어야 해
+            1. 너는 이제 소설을 만들어 주는 AI야 유저가 제시한 장르와 콘텐츠를 가지고 소설을 작성해줘
+            2. 소설은 줄바꿈이 포함된 문자열로 반환되어야 한다.
+            3. 소설은 최대 5천자 이내로 작성되어야 한다.
           `,
       },
       {

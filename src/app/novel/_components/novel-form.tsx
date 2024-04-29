@@ -43,17 +43,17 @@ export default function NovelForm({ novelContent, setNovelContent }: NovelFormPr
     // const bb = JSON.parse(aa);
     const res = await novelCreate(values);
     console.log("res", res);
-    if (res && JSON.parse(res)) {
-      console.log(JSON.parse(res));
-      // const id = useId();
-      const newData = {
-        ...JSON.parse(res),
-        content: values.content,
-        genre: values.genre,
-        id: novelContent.length + 1,
-      };
-      setNovelContent([newData, ...novelContent]);
-    }
+    // if (res && JSON.parse(res)) {
+    //   console.log(JSON.parse(res));
+    //   // const id = useId();
+    //   const newData = {
+    //     ...JSON.parse(res),
+    //     content: values.content,
+    //     genre: values.genre,
+    //     id: novelContent.length + 1,
+    //   };
+    //   setNovelContent([newData, ...novelContent]);
+    // }
     setLoading(false);
   }
   return (
@@ -66,7 +66,7 @@ export default function NovelForm({ novelContent, setNovelContent }: NovelFormPr
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>오늘의 기분을 입력해 주세요.</FormLabel>
+                <FormLabel>소설에 필요한 짧은 글을 작성해 주세요.</FormLabel>
                 <FormControl>
                   <Textarea placeholder="오늘은 날씨가 무척이나 따듯하고 화창한 날씨였다. 싱긋한 봄바람과 함께 새로운 만남이 있을것만 같다." rows={5} {...field} />
                 </FormControl>
@@ -91,7 +91,7 @@ export default function NovelForm({ novelContent, setNovelContent }: NovelFormPr
                   </FormControl>
                   <SelectContent>
                     <SelectItem value="로맨스">로맨스</SelectItem>
-                    <SelectItem value="판타지">판다지</SelectItem>
+                    <SelectItem value="판타지">판타지</SelectItem>
                     <SelectItem value="추리">추리</SelectItem>
                     <SelectItem value="스릴러">스릴러</SelectItem>
                     <SelectItem value="공포">공포</SelectItem>
