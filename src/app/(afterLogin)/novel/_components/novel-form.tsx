@@ -12,6 +12,7 @@ import { novelCreate } from "@/api/novel/api";
 import { novelCreateSchema } from "@/api/novel/types";
 import { Loader2 } from "lucide-react";
 import { useId, useState } from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface NovelFormProps {
   novelContent?: any;
@@ -43,6 +44,14 @@ export default function NovelForm({ novelContent, setNovelContent }: NovelFormPr
     // const bb = JSON.parse(aa);
     const res = await novelCreate(values);
     console.log("res", res);
+    if (res) {
+      const newData = {
+        novel: res,
+        values,
+      };
+      setNovelContent(newData);
+      // setNovelContent([newData, ...novelContent]);
+    }
     // if (res && JSON.parse(res)) {
     //   console.log(JSON.parse(res));
     //   // const id = useId();
@@ -58,61 +67,70 @@ export default function NovelForm({ novelContent, setNovelContent }: NovelFormPr
   }
   return (
     <>
-      <h1 className="text-center font-semibold text-2xl mb-8">오늘의 소설을 작성해 드립니다!</h1>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <FormField
-            control={form.control}
-            name="content"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>소설에 필요한 짧은 글을 작성해 주세요.</FormLabel>
-                <FormControl>
-                  <Textarea placeholder="오늘은 날씨가 무척이나 따듯하고 화창한 날씨였다. 싱긋한 봄바람과 함께 새로운 만남이 있을것만 같다." rows={5} {...field} />
-                </FormControl>
-                {/* <FormDescription>
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle>소설을 작성해 드립니다!!</CardTitle>
+          <CardDescription>소설에 필요한 짧은 글을 작성해 주세요.</CardDescription>
+          <CardContent className="p-0">
+            <div className="mt-4">
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                  <FormField
+                    control={form.control}
+                    name="content"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>내용</FormLabel>
+                        <FormControl>
+                          <Textarea placeholder="오늘은 날씨가 무척이나 따듯하고 화창한 날씨였다. 싱긋한 봄바람과 함께 새로운 만남이 있을것만 같다." rows={5} {...field} />
+                        </FormControl>
+                        {/* <FormDescription>
                   This is your public display name.
                 </FormDescription> */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="genre"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>장르를 선택해 주세요.</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="장르를 선택해 주세요." />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="로맨스">로맨스</SelectItem>
-                    <SelectItem value="판타지">판타지</SelectItem>
-                    <SelectItem value="추리">추리</SelectItem>
-                    <SelectItem value="스릴러">스릴러</SelectItem>
-                    <SelectItem value="공포">공포</SelectItem>
-                    <SelectItem value="게임">게임</SelectItem>
-                    <SelectItem value="과학">과학</SelectItem>
-                  </SelectContent>
-                </Select>
-                {/* <FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="genre"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>장르를 선택해 주세요.</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="장르를 선택해 주세요." />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="로맨스">로맨스</SelectItem>
+                            <SelectItem value="판타지">판타지</SelectItem>
+                            <SelectItem value="추리">추리</SelectItem>
+                            <SelectItem value="스릴러">스릴러</SelectItem>
+                            <SelectItem value="공포">공포</SelectItem>
+                            <SelectItem value="게임">게임</SelectItem>
+                            <SelectItem value="과학">과학</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        {/* <FormDescription>
                   This is your public display name.
                 </FormDescription> */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            소설 만들기
-          </Button>
-        </form>
-      </Form>
+                  <Button type="submit" className="w-full" disabled={loading}>
+                    {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    소설 만들기
+                  </Button>
+                </form>
+              </Form>
+            </div>
+          </CardContent>
+        </CardHeader>
+      </Card>
     </>
   );
 }
