@@ -1,5 +1,5 @@
 import Aside from "./_components/Aside";
-import { Content } from "./_components/Content";
+import Content from "./_components/Content";
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   return (
