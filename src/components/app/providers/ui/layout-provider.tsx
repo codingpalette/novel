@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { LoginBtn } from "@/components/widgets/login-btn";
 // import BreadcrumbBox from "@";
 
 export function LayoutProvider({ children }: { children: React.ReactNode }) {
@@ -50,9 +51,7 @@ export function LayoutProvider({ children }: { children: React.ReactNode }) {
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input type="search" placeholder="Search..." className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]" />
           </div>
-          <Button size="sm">
-          로그인
-          </Button>
+          <LoginBtn />
           {/* <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon" className="overflow-hidden rounded-full">
