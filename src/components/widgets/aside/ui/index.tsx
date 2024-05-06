@@ -6,7 +6,7 @@ import { BookPlus, ChevronLeft, Home, LineChart, Package, Package2, PanelLeft, P
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
-export default function Aside() {
+export function Aside() {
   const pathname = usePathname();
 
   return (
